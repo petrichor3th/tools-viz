@@ -22,6 +22,9 @@ function(add_tools_viz_plugin PLUGIN_NAME)
         LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/plugins
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/plugins
     )
+
+    # 设置文件夹结构
+    set_target_properties(${PLUGIN_NAME} PROPERTIES FOLDER "Plugins")
     
     # Windows 下移除 lib 前缀
     if(WIN32)
