@@ -1,0 +1,45 @@
+# Build directories
+build/
+cmake-build-*/
+out/
+
+# ExternalProject cache
+externals/
+install/
+
+# IDE
+.vs/
+.vscode/
+*.user
+*.suo
+CMakeSettings.json
+.idea/
+
+# Generated files
+*.dll
+*.exe
+*.lib
+*.pdb
+*.exp
+*.ilk
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Qt
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+*.qm
+
+# Object files
+*.o
+*.obj
+
+# Backup files
+*~
+*.bak
+*.swp

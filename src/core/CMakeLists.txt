@@ -24,3 +24,6 @@ target_link_libraries(ToolsVizCore PUBLIC Qt6::Core Qt6::Widgets Qt6::Quick Qt6:
 if(WIN32)
     target_compile_definitions(ToolsVizCore PRIVATE TOOLSVIZCORE_LIBRARY)
 endif()
+
+# IDE 文件夹
+set_target_properties(ToolsVizCore PROPERTIES FOLDER "Core")
