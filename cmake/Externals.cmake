@@ -37,6 +37,7 @@ endif()
 # ==============================================================================
 # OpenSceneGraph
 # 注：OSG 3.6.5 使用 CMAKE_MINIMUM_REQUIRED(VERSION 2.8.0)，需要添加兼容性参数
+# 补丁：修复 C++17 std::byte 与 Windows SDK byte 类型冲突
 # ==============================================================================
 ExternalProject_Add(ext_osg
     PREFIX ${EP_PREFIX}/osg
@@ -44,6 +45,7 @@ ExternalProject_Add(ext_osg
     GIT_TAG OpenSceneGraph-3.6.5
     GIT_SHALLOW TRUE
     GIT_PROGRESS TRUE
+    PATCH_COMMAND ${CMAKE_COMMAND} -DSOURCE_DIR=<SOURCE_DIR> -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/patches/osg_std_byte_fix.cmake
     CMAKE_ARGS
         ${EP_CMAKE_ARGS}
         ${EP_CMAKE_COMPAT_ARGS}
