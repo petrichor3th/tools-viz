@@ -23,6 +23,11 @@ public:
     QString version() const override;
     QString description() const override;
     QString author() const override;
+
+private:
+    bool m_initialized = false;
+    QString m_defaultEarthFile;
+    QString m_dataDirectory;
 };
 
 #endif // OSGEARTH_VIEWER_PLUGIN_H

@@ -4,6 +4,7 @@
 #include <QQuickWindow>
 #include <QMouseEvent>
 #include <QWheelEvent>
+#include <QDebug>
 
 #include <osg/Camera>
 #include <osg/Group>
@@ -13,6 +14,9 @@
 #include <osgEarth/EarthManipulator>
 #include <osgEarth/MapNode>
 #include <osgEarth/Viewpoint>
+#include <osgEarth/Map>
+#include <osgEarth/XYZImageLayer>
+#include <osgEarth/Profile>
 
 // ==============================================================================
 // EarthRenderer - 负责 FBO 渲染
@@ -94,9 +98,21 @@ void EarthWidget::initializeViewer()
     osg::ref_ptr<osgEarth::EarthManipulator> manipulator = new osgEarth::EarthManipulator();
     m_viewer->setCameraManipulator(manipulator);
 
-    // 创建默认场景
-    osg::ref_ptr<osg::Group> root = new osg::Group;
-    m_viewer->setSceneData(root);
+    // 创建默认在线地图（OpenStreetMap）
+    osg::ref_ptr<osgEarth::Map> map = new osgEarth::Map();
+    
+    // 添加 OpenStreetMap XYZ 图层
+    osgEarth::XYZImageLayer* osmLayer = new osgEarth::XYZImageLayer();
+    osmLayer->setName("OpenStreetMap");
+    osmLayer->setURL("http://[abc].tile.openstreetmap.org/{z}/{x}/{-y}.png");
+    osmLayer->setProfile(osgEarth::Profile::create("spherical-mercator"));
+    map->addLayer(osmLayer);
+
+    // 创建 MapNode 并设置为场景
+    m_mapNode = new osgEarth::MapNode(map);
+    m_viewer->setSceneData(m_mapNode);
+
+    qInfo() << "EarthWidget: Initialized with default OpenStreetMap layer";
 }
 
 QQuickFramebufferObject::Renderer* EarthWidget::createRenderer() const

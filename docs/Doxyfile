@@ -1,0 +1,71 @@
+# ==============================================================================
+# Doxygen 配置文件 - ToolsViz API 文档生成
+# ==============================================================================
+
+# 项目信息
+PROJECT_NAME           = "ToolsViz"
+PROJECT_NUMBER         = "1.0.0"
+PROJECT_BRIEF          = "地理空间可视化工具平台"
+PROJECT_LOGO           =
+
+# 输出目录
+OUTPUT_DIRECTORY       = docs/api
+OUTPUT_LANGUAGE        = Chinese
+
+# 输入源码目录
+INPUT                  = src
+INPUT_ENCODING         = UTF-8
+FILE_PATTERNS          = *.h *.hpp *.cpp *.c
+RECURSIVE              = YES
+EXCLUDE                =
+EXCLUDE_PATTERNS       = */build/* */externals/*
+
+# 提取设置
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+
+# 构建设置
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = NO
+SEARCH_INCLUDES        = YES
+INCLUDE_PATH           = src/core/include src/app
+
+# 输出格式
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_FILE_EXTENSION    = .html
+HTML_COLORSTYLE_HUE    = 220
+HTML_COLORSTYLE_SAT    = 100
+HTML_COLORSTYLE_GAMMA  = 80
+HTML_DYNAMIC_SECTIONS  = YES
+GENERATE_TREEVIEW      = YES
+TREEVIEW_WIDTH         = 250
+
+# LaTeX/PDF 输出（可选）
+GENERATE_LATEX         = NO
+
+# 图形设置
+HAVE_DOT               = NO
+CLASS_DIAGRAMS         = YES
+COLLABORATION_GRAPH    = NO
+INCLUDE_GRAPH          = NO
+INCLUDED_BY_GRAPH      = NO
+CALL_GRAPH             = NO
+CALLER_GRAPH           = NO
+
+# 源码浏览
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = NO
+STRIP_CODE_COMMENTS    = YES
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+
+# 警告设置
+QUIET                  = NO
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+WARN_NO_PARAMDOC       = NO
