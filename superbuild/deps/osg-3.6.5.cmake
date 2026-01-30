@@ -45,5 +45,3 @@ ExternalProject_Add(ext_osg
     ${SB_LOG_ARGS}
 )
 
-# 导出变量
-set(SB_OSG_ROOT "${SB_INSTALL_DIR}" CACHE PATH "OSG root directory")

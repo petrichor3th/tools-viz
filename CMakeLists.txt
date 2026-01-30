@@ -6,6 +6,20 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # ==============================================================================
+# Qt6 配置（必须）
+# ==============================================================================
+# 用法: cmake -DQt6_DIR=C:/Qt/6.x.x/msvc2022_64/lib/cmake/Qt6 ..
+if(NOT Qt6_DIR)
+    message(FATAL_ERROR
+        "Qt6_DIR is required but not set.\n"
+        "Please specify Qt6 installation path:\n"
+        "  cmake -DQt6_DIR=<Qt6_install_path>/lib/cmake/Qt6 ..\n"
+        "Example:\n"
+        "  cmake -DQt6_DIR=C:/Qt/6.8.0/msvc2022_64/lib/cmake/Qt6 .."
+    )
+endif()
+
+# ==============================================================================
 # SuperBuild 选项
 # ==============================================================================
 option(USE_SUPERBUILD "Use SuperBuild to build dependencies from source" ON)

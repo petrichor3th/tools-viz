@@ -32,6 +32,3 @@ ExternalProject_Add(ext_proj
     ${SB_LOG_ARGS}
 )
 
-# 导出变量
-set(SB_PROJ_LIBRARY "${SB_INSTALL_DIR}/lib/proj.lib" CACHE FILEPATH "PROJ library")
-set(SB_PROJ_INCLUDE_DIR "${SB_INSTALL_DIR}/include" CACHE PATH "PROJ include directory")

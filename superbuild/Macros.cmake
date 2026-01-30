@@ -68,38 +68,6 @@ if(MSVC)
 endif()
 
 # ==============================================================================
-# 库路径生成函数
-# ==============================================================================
-
-# 获取库文件完整路径
-# 用法: sb_lib_path(<OUTPUT_VAR> <LIB_NAME> [SHARED|STATIC|IMPORT])
-function(sb_lib_path OUTPUT_VAR LIB_NAME)
-    set(LIB_TYPE "IMPORT")  # 默认为导入库
-    if(ARGC GREATER 2)
-        set(LIB_TYPE ${ARGV2})
-    endif()
-
-    if(WIN32)
-        if(LIB_TYPE STREQUAL "SHARED")
-            set(${OUTPUT_VAR} "${SB_INSTALL_DIR}/bin/${LIB_NAME}${SB_SHARED_LIB_EXT}" PARENT_SCOPE)
-        else()
-            set(${OUTPUT_VAR} "${SB_INSTALL_DIR}/lib/${LIB_NAME}${SB_IMPORT_LIB_EXT}" PARENT_SCOPE)
-        endif()
-    else()
-        if(LIB_TYPE STREQUAL "STATIC")
-            set(${OUTPUT_VAR} "${SB_INSTALL_DIR}/lib/lib${LIB_NAME}${SB_STATIC_LIB_EXT}" PARENT_SCOPE)
-        else()
-            set(${OUTPUT_VAR} "${SB_INSTALL_DIR}/lib/lib${LIB_NAME}${SB_SHARED_LIB_EXT}" PARENT_SCOPE)
-        endif()
-    endif()
-endfunction()
-
-# 获取头文件目录
-function(sb_include_dir OUTPUT_VAR)
-    set(${OUTPUT_VAR} "${SB_INSTALL_DIR}/include" PARENT_SCOPE)
-endfunction()
-
-# ==============================================================================
 # 依赖注册宏
 # ==============================================================================
 
@@ -140,10 +108,6 @@ set(SB_LOG_ARGS
     LOG_INSTALL TRUE
 )
 
-# ==============================================================================
-# 版本管理重构
-# ==============================================================================
-
 # 声明外部项目
 # 用法:
 # sb_declare_external(zlib
@@ -165,6 +129,9 @@ macro(sb_declare_external NAME)
     # 存储到全局属性
     set_property(GLOBAL PROPERTY SB_EXT_${NAME}_VERSION "${_VERSION}")
     set_property(GLOBAL PROPERTY SB_EXT_${NAME}_DESCRIPTION "${EXT_DESCRIPTION}")
+    
+    # 设置版本变量供后续 include 使用
+    set(SB_${_NAME_UPPER}_VERSION "${_VERSION}")
     
     if(EXT_URL)
         set_property(GLOBAL PROPERTY SB_EXT_${NAME}_URL "${EXT_URL}")
@@ -254,10 +221,3 @@ function(sb_generate_dependency_graph OUTPUT_FILE)
     message(STATUS "Dependency graph written to: ${OUTPUT_FILE}")
 endfunction()
 
-# ==============================================================================
-# 兼容性别名（向后兼容旧配置）
-# ==============================================================================
-set(EP_PREFIX ${SB_PREFIX})
-set(EP_INSTALL_DIR ${SB_INSTALL_DIR})
-set(EP_CMAKE_ARGS ${SB_CMAKE_ARGS})
-set(EP_CMAKE_COMPAT_ARGS ${SB_CMAKE_COMPAT_ARGS})

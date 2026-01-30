@@ -81,6 +81,3 @@ ExternalProject_Add(ext_sqlite3
     ${SB_LOG_ARGS}
 )
 
-# 导出变量
-set(SB_SQLITE3_LIBRARY "${SB_INSTALL_DIR}/lib/sqlite3.lib" CACHE FILEPATH "SQLite3 library")
-set(SB_SQLITE3_INCLUDE_DIR "${SB_INSTALL_DIR}/include" CACHE PATH "SQLite3 include directory")

@@ -23,6 +23,11 @@ ExternalProject_Add(ext_osgearth
     ${SB_OSGEARTH_SRC}
     GIT_SHALLOW TRUE
     GIT_PROGRESS TRUE
+    GIT_SUBMODULES "src/third_party/lerc"
+    # GDAL 3.9+ 命名空间冲突修复补丁
+    PATCH_COMMAND ${CMAKE_COMMAND}
+        -DSOURCE_DIR=<SOURCE_DIR>
+        -P ${CMAKE_SOURCE_DIR}/superbuild/patches/osgearth-3.7.2-gdal-namespace.cmake
     CMAKE_ARGS
         ${SB_CMAKE_ARGS}
         # OSG 配置
@@ -45,5 +50,3 @@ ExternalProject_Add(ext_osgearth
     ${SB_LOG_ARGS}
 )
 
-# 导出变量
-set(SB_OSGEARTH_ROOT "${SB_INSTALL_DIR}" CACHE PATH "osgEarth root directory")

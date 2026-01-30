@@ -13,10 +13,9 @@ sb_declare_external(zlib
 )
 
 sb_declare_external(curl
-    VERSION     "8.5.0"
+    VERSION     "8.18.0"
     DESCRIPTION "Command line tool and library for transferring data with URLs"
-    GIT         "https://github.com/curl/curl.git"
-    TAG         "curl-8_5_0"
+    URL         "https://github.com/curl/curl/releases/download/curl-8_18_0/curl-8.18.0.tar.gz"
 )
 
 sb_declare_external(libtiff
@@ -52,10 +51,9 @@ sb_declare_external(gdal
 # ------------------------------------------------------------------------------
 
 sb_declare_external(glew
-    VERSION     "2.3.0"
+    VERSION     "2.3.1"
     DESCRIPTION "OpenGL Extension Wrangler Library"
-    GIT         "https://github.com/Perlmint/glew-cmake.git"
-    TAG         "glew-cmake-2.3.0"
+    URL         "https://github.com/nigels-com/glew/releases/download/glew-2.3.1/glew-2.3.1.tgz"
 )
 
 sb_declare_external(osg

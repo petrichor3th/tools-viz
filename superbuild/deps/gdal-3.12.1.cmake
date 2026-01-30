@@ -45,6 +45,3 @@ ExternalProject_Add(ext_gdal
     ${SB_LOG_ARGS}
 )
 
-# 导出变量
-set(SB_GDAL_LIBRARY "${SB_INSTALL_DIR}/lib/gdal.lib" CACHE FILEPATH "GDAL library")
-set(SB_GDAL_INCLUDE_DIR "${SB_INSTALL_DIR}/include" CACHE PATH "GDAL include directory")
