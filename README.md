@@ -22,17 +22,21 @@ ToolsViz/
 │   ├── Externals.cmake     # SuperBuild 入口
 │   └── BuildMacros.cmake   # 构建辅助宏
 ├── superbuild/             # 第三方依赖构建配置
-│   ├── common.cmake        # 通用配置
-│   ├── curl.cmake          # libcurl
-│   ├── tiff.cmake          # libtiff
-│   ├── sqlite3.cmake       # SQLite3
-│   ├── proj.cmake          # PROJ
-│   ├── gdal.cmake          # GDAL
-│   ├── glew.cmake          # GLEW
-│   ├── osg.cmake           # OpenSceneGraph
-│   ├── osgearth.cmake      # osgEarth
-│   ├── toolsviz.cmake      # 主项目
+│   ├── Versions.cmake      # 版本集中管理
+│   ├── Macros.cmake        # 通用构建宏
+│   ├── deps/               # 依赖配置（按版本号命名）
+│   │   ├── zlib-1.3.1.cmake
+│   │   ├── curl-8.18.0.cmake
+│   │   ├── libtiff-4.7.1.cmake
+│   │   ├── sqlite-3.50.2.cmake
+│   │   ├── proj-9.4.1.cmake
+│   │   ├── gdal-3.12.1.cmake
+│   │   ├── glew-2.3.1.cmake
+│   │   ├── osg-3.6.5.cmake
+│   │   └── osgearth-3.7.2.cmake
 │   └── patches/            # 源码补丁
+│       ├── osg-3.6.5-cpp17.cmake
+│       └── osgearth-3.7.2-gdal-namespace.cmake
 ├── src/
 │   ├── app/                # 主应用程序
 │   ├── core/               # 核心库（插件管理）
@@ -91,12 +95,13 @@ SuperBuild 自动构建以下依赖：
 
 | 库 | 版本 | 用途 |
 |----|------|------|
-| libcurl | 8.5.0 | HTTP/网络传输 |
-| libtiff | 4.6.0 | TIFF 图像支持 |
+| zlib | 1.3.1 | 通用压缩库 |
+| libcurl | 8.18.0 | HTTP/网络传输 |
+| libtiff | 4.7.1 | TIFF 图像支持 |
 | SQLite3 | 3.50.2 | 数据库 (PROJ 依赖) |
 | PROJ | 9.4.1 | 地理坐标投影 |
 | GDAL | 3.12.1 | 地理空间数据抽象 |
-| GLEW | 2.3.0 | OpenGL 扩展 |
+| GLEW | 2.3.1 | OpenGL 扩展 |
 | OpenSceneGraph | 3.6.5 | 3D 图形渲染 |
 | osgEarth | 3.7.2 | 地理空间可视化引擎 |
 
@@ -154,7 +159,7 @@ public:
 
 ### Q: OSG 编译报 std::byte 冲突
 
-项目已包含自动补丁 (`superbuild/patches/osg_cpp17_fixes.cmake`)，会自动修复此问题。
+项目已包含自动补丁 (`superbuild/patches/osg-3.6.5-cpp17.cmake`)，会自动修复此问题。
 
 ### Q: 如何清理重新构建
 
