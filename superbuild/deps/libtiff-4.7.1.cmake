@@ -1,5 +1,5 @@
 # ==============================================================================
-# libtiff 4.6.0 - TIFF 图像库
+# libtiff 4.7.1 - TIFF 图像库
 # ==============================================================================
 # 官方仓库: https://gitlab.com/libtiff/libtiff
 # 功能: TIFF 格式图像读写支持
@@ -29,6 +29,3 @@ ExternalProject_Add(ext_tiff
     ${SB_LOG_ARGS}
 )
 
-# 导出变量
-set(SB_TIFF_LIBRARY "${SB_INSTALL_DIR}/lib/tiff.lib" CACHE FILEPATH "TIFF library")
-set(SB_TIFF_INCLUDE_DIR "${SB_INSTALL_DIR}/include" CACHE PATH "TIFF include directory")

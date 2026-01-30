@@ -10,16 +10,17 @@
 #   ├── Macros.cmake        # 宏定义和辅助函数
 #   ├── deps/               # 依赖配置（带版本号命名）
 #   │   ├── zlib-1.3.1.cmake
-#   │   ├── curl-8.5.0.cmake
+#   │   ├── curl-8.18.0.cmake
 #   │   ├── libtiff-4.7.1.cmake
 #   │   ├── sqlite-3.50.2.cmake
 #   │   ├── proj-9.4.1.cmake
 #   │   ├── gdal-3.12.1.cmake
-#   │   ├── glew-2.3.0.cmake
+#   │   ├── glew-2.3.1.cmake
 #   │   ├── osg-3.6.5.cmake
 #   │   └── osgearth-3.7.2.cmake
 #   └── patches/            # 源码补丁
-#       └── osg-3.6.5-cpp17.cmake
+#       ├── osg-3.6.5-cpp17.cmake
+#       └── osgearth-3.7.2-gdal-namespace.cmake
 #
 
 cmake_minimum_required(VERSION 3.16)
@@ -28,11 +29,11 @@ cmake_minimum_required(VERSION 3.16)
 # 加载核心模块
 # ==============================================================================
 
-# 版本定义
-include(${CMAKE_SOURCE_DIR}/superbuild/Versions.cmake)
-
 # 宏和辅助函数
 include(${CMAKE_SOURCE_DIR}/superbuild/Macros.cmake)
+
+# 版本定义
+include(${CMAKE_SOURCE_DIR}/superbuild/Versions.cmake)
 
 # ==============================================================================
 # 依赖加载顺序（按拓扑排序）
@@ -69,6 +70,7 @@ ExternalProject_Add(ToolsViz
         -DOSG_DIR:PATH=${SB_INSTALL_DIR}
         -DOpenSceneGraph_DIR:PATH=${SB_INSTALL_DIR}
         -DosgEarth_DIR:PATH=${SB_INSTALL_DIR}/lib/cmake/osgEarth
+        -DQt6_DIR:PATH=${Qt6_DIR}
     BUILD_COMMAND ${SB_BUILD_CMD}
     INSTALL_COMMAND ""
     LOG_CONFIGURE TRUE
