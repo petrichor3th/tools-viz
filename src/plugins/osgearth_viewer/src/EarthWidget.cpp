@@ -15,7 +15,7 @@
 #include <osgEarth/MapNode>
 #include <osgEarth/Viewpoint>
 #include <osgEarth/Map>
-#include <osgEarth/XYZImageLayer>
+#include <osgEarth/TMS>
 #include <osgEarth/Profile>
 
 // ==============================================================================
@@ -101,11 +101,10 @@ void EarthWidget::initializeViewer()
     // 创建默认在线地图（OpenStreetMap）
     osg::ref_ptr<osgEarth::Map> map = new osgEarth::Map();
     
-    // 添加 OpenStreetMap XYZ 图层
-    osgEarth::XYZImageLayer* osmLayer = new osgEarth::XYZImageLayer();
+    // 添加 OpenStreetMap TMS 图层
+    osgEarth::TMSImageLayer* osmLayer = new osgEarth::TMSImageLayer();
     osmLayer->setName("OpenStreetMap");
-    osmLayer->setURL("http://[abc].tile.openstreetmap.org/{z}/{x}/{-y}.png");
-    osmLayer->setProfile(osgEarth::Profile::create("spherical-mercator"));
+    osmLayer->setURL("http://tile.openstreetmap.org/{z}/{x}/{y}.png");
     map->addLayer(osmLayer);
 
     // 创建 MapNode 并设置为场景
